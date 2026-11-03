@@ -1,0 +1,15 @@
+# Keep only project source, scripts, configurations and tests.
+/*
+!/.gitignore
+!/src/
+!/scripts/
+!/configs/
+!/tests/
+
+# Generated files inside the allowed directories.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.env

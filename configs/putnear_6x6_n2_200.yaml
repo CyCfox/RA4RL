@@ -1,0 +1,45 @@
+# Zoo MiniGrid-PutNear-6x6-N2-v0 PPO/10M; user-specified 200-step horizon.
+protocol_revision: putnear_6x6_n2_horizon200_v2
+env_id: MiniGrid-PutNear-6x6-N2-v0
+total_timesteps: 10000000
+max_episode_steps: 200
+train_seed: 42
+collection_seeds: [0, 100]
+eval_seeds: [100, 200]
+eval_n_envs: 10
+eval_interval_updates: 100
+n_envs: 8
+ppo:
+  n_steps: 128
+  batch_size: 64
+  n_epochs: 10
+  learning_rate: 0.00025
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  clip_range_vf: null
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  normalize_advantage: true
+  target_kl: null
+kd:
+  lambda_start: 10.0
+  anneal_steps: 100000
+retrieval:
+  embedding_model: /workspace/models/all-MiniLM-L6-v2
+  reranker_model: /workspace/models/ms-marco-MiniLM-L6-v2
+  dense_k: 20
+  sparse_k: 20
+  fusion_k: 20
+  rerank_k: 5
+  rrf_k: 60
+  embedding_batch_size: 512
+  rerank_batch_size: 512
+llm:
+  endpoint: https://opencode.ai/inference/go/openai/v1/chat/completions
+  model: deepseek-v4.1-flash
+  concurrency: 100
+  timeout: 120
+  max_retries: 5
+  max_tokens: 1024
